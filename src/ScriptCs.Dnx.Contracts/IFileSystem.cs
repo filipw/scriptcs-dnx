@@ -4,40 +4,13 @@ using System.IO;
 
 namespace ScriptCs.Dnx.Contracts
 {
-    public interface IFilePreProcessor : IFileParser
-    {
-        FilePreProcessorResult ProcessFile(string path);
-
-        FilePreProcessorResult ProcessScript(string script);
-    }
-
-    public interface IFileParser
-    {
-        void ParseFile(string path, FileParserContext context);
-
-        void ParseScript(List<string> scriptLines, FileParserContext context);
-    }
-
-    public interface ILineProcessor
-    {
-        bool ProcessLine(IFileParser parser, FileParserContext context, string line, bool isBeforeCode);
-    }
-
-    public interface IDirectiveLineProcessor : ILineProcessor
-    {
-        bool Matches(string line);
-    }
-
     public interface IFileSystem
     {
-        //IEnumerable<string> EnumerateFiles(
-        //    string dir, string search, SearchOption searchOption = SearchOption.AllDirectories);
+        IEnumerable<string> EnumerateFiles(string dir, string search);
 
-        //IEnumerable<string> EnumerateDirectories(
-        //    string dir, string searchPattern, SearchOption searchOption = SearchOption.AllDirectories);
+        IEnumerable<string> EnumerateDirectories(string dir, string searchPattern);
 
-        //IEnumerable<string> EnumerateFilesAndDirectories(
-        //    string dir, string searchPattern, SearchOption searchOption = SearchOption.AllDirectories);
+        IEnumerable<string> EnumerateFilesAndDirectories(string dir, string searchPattern);
 
         void Copy(string source, string dest, bool overwrite);
 

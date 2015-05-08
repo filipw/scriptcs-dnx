@@ -7,22 +7,19 @@ namespace ScriptCs.Dnx
 {
     public class FileSystem : IFileSystem
     {
-        public virtual IEnumerable<string> EnumerateFiles(
-            string dir, string searchPattern, SearchOption searchOption = SearchOption.AllDirectories)
+        public virtual IEnumerable<string> EnumerateFiles(string dir, string searchPattern)
         {
-            return Directory.EnumerateFiles(dir, searchPattern, searchOption);
+            return Directory.EnumerateFiles(dir, searchPattern);
         }
 
-        public virtual IEnumerable<string> EnumerateDirectories(
-            string dir, string searchPattern, SearchOption searchOption = SearchOption.AllDirectories)
+        public virtual IEnumerable<string> EnumerateDirectories(string dir, string searchPattern)
         {
-            return Directory.EnumerateDirectories(dir, searchPattern, searchOption);
+            return Directory.EnumerateDirectories(dir, searchPattern);
         }
 
-        public virtual IEnumerable<string> EnumerateFilesAndDirectories(
-            string dir, string searchPattern, SearchOption searchOption = SearchOption.AllDirectories)
+        public virtual IEnumerable<string> EnumerateFilesAndDirectories(string dir, string searchPattern)
         {
-            return Directory.EnumerateFileSystemEntries(dir, searchPattern, searchOption);
+            return Directory.EnumerateFileSystemEntries(dir, searchPattern);
         }
 
         public virtual void Copy(string source, string dest, bool overwrite)

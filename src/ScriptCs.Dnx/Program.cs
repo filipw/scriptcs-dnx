@@ -15,44 +15,11 @@ namespace ScriptCs.Dnx
     {
         public void Main(string[] args)
         {
-            var file = @"C:\Users\filip\Documents\dev\dummy\scriptcs_packages.config";
-            var folder = @"C:\Users\filip\Documents\dev\dummy\scriptcs_packages";
+            var dir = @"C:\Users\filip\Documents\dev\dummy\";
             var scriptFile = @"C:\Users\filip\Documents\dev\dummy\foo.csx";
 
-            var compatibilityProvider = new DefaultCompatibilityProvider();
-            var folderReader = new PackageFolderReader(folder);
-            var nupkgFiles = folderReader.GetFiles().Where(x => Path.GetExtension(x).ToLowerInvariant() == ".nupkg");
+            var fs = new FileSystem {CurrentDirectory = dir};
 
-            var packagesConfig = XDocument.Parse(File.ReadAllText(file));
-
-            var reader = new PackagesConfigReader(packagesConfig);
-            var contents = reader.GetPackages();
-
-            foreach (var nupkg in nupkgFiles)
-            {
-                var stream = folderReader.GetStream(nupkg);
-                var packageReader = new PackageReader(stream);
-
-                var identity = packageReader.GetIdentity();
-                var packagesConfigReference = contents.FirstOrDefault(x => x.PackageIdentity.Id == identity.Id && x.PackageIdentity.Version == identity.Version);
-
-                if (packagesConfigReference == null)
-                {
-                    break;
-                }
-
-                var packageContents = packageReader.GetLibItems().Where(x => compatibilityProvider.IsCompatible(x.TargetFramework, packagesConfigReference.TargetFramework)).
-                    SelectMany(x => x.Items.Where(i => Path.GetExtension(i).ToLowerInvariant() == ".dll"));
-
-                foreach (var packageContent in packageContents)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine(packageContent);
-                    Console.WriteLine("-----");
-                }
-            }
-
-            var fs = new FileSystem();
             var filePreProcessor = new FilePreProcessor(fs, new List<ILineProcessor> {new LoadLineProcessor(fs), new ReferenceLineProcessor(fs)});
             var result = filePreProcessor.ProcessFile(scriptFile);
 
@@ -69,6 +36,15 @@ namespace ScriptCs.Dnx
             foreach (var ns in result.Namespaces)
             {
                 Console.WriteLine(ns);
+            }
+
+            var assemblyResolver = new AssemblyResolver(fs);
+            var binaries = assemblyResolver.GetAssemblyPaths(fs.CurrentDirectory);
+            foreach (var binary in binaries)
+            {
+                Console.WriteLine();
+                Console.WriteLine(binary);
+                Console.WriteLine("-----");
             }
 
             Console.ReadLine();
