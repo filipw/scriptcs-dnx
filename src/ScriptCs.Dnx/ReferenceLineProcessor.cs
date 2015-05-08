@@ -1,0 +1,41 @@
+﻿using System;
+using ScriptCs.Dnx.Contracts;
+
+namespace ScriptCs
+{
+    public class ReferenceLineProcessor : DirectiveLineProcessor, IReferenceLineProcessor
+    {
+        private readonly IFileSystem _fileSystem;
+
+        public ReferenceLineProcessor(IFileSystem fileSystem)
+        {
+            _fileSystem = fileSystem;
+        }
+
+        protected override string DirectiveName
+        {
+            get { return "r"; }
+        }
+
+        protected override BehaviorAfterCode BehaviorAfterCode
+        {
+            get { return BehaviorAfterCode.Throw; }
+        }
+
+        protected override bool ProcessLine(IFileParser parser, FileParserContext context, string line)
+        {
+            var argument = GetDirectiveArgument(line);
+            var assemblyPath = Environment.ExpandEnvironmentVariables(argument);
+
+            var referencePath = _fileSystem.GetFullPath(assemblyPath);
+            var referencePathOrName = _fileSystem.FileExists(referencePath) ? referencePath : argument;
+
+            if (!string.IsNullOrWhiteSpace(referencePathOrName) && !context.References.Contains(referencePathOrName))
+            {
+                context.References.Add(referencePathOrName);
+            }
+
+            return true;
+        }
+    }
+}
