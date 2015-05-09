@@ -7,8 +7,8 @@
     "licenseUrl": "",
 
     "dependencies": {
-        "NuGet.Packaging": "3.0.0-t150508182531",
-        "NuGet.Frameworks": "3.0.0-t150508182531",
+        "NuGet.Packaging": { "version": "3.0.0-t150508182531", "options": "private" },
+        "NuGet.Frameworks": { "version": "3.0.0-t150508182531", "options": "private" },
         "ScriptCs.Dnx.Contracts": "1.0.0-*"
     },
 

@@ -1,12 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
-using NuGet.Frameworks;
-using NuGet.Packaging;
 using ScriptCs.Dnx.Contracts;
 
 namespace ScriptCs.Dnx
@@ -20,7 +13,10 @@ namespace ScriptCs.Dnx
 
             var fs = new FileSystem {CurrentDirectory = dir};
 
-            var filePreProcessor = new FilePreProcessor(fs, new List<ILineProcessor> {new LoadLineProcessor(fs), new ReferenceLineProcessor(fs)});
+            var filePreProcessor = new FilePreProcessor(fs, new List<ILineProcessor>
+            {
+                new LoadLineProcessor(fs), new ReferenceLineProcessor(fs), new UsingLineProcessor()
+            });
             var result = filePreProcessor.ProcessFile(scriptFile);
 
             foreach (var loadedScript in result.LoadedScripts)

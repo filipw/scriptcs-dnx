@@ -3,7 +3,7 @@ using ScriptCs.Dnx.Contracts;
 
 namespace ScriptCs
 {
-    public class ReferenceLineProcessor : DirectiveLineProcessor, IReferenceLineProcessor
+    public class ReferenceLineProcessor : DirectiveLineProcessor
     {
         private readonly IFileSystem _fileSystem;
 
