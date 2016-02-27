@@ -62,15 +62,15 @@ namespace ScriptCs.Dnx.Engine.Roslyn
 
             if (isFirstExecution)
             {
-                var host = _scriptHostFactory.CreateScriptHost(
-                    new ScriptPackManager(scriptPackSession.Contexts), scriptArgs);
+                var host = _scriptHostFactory.CreateScriptHost(new ScriptPackManager(scriptPackSession.Contexts), scriptArgs);
 
                 ScriptLibraryWrapper.SetHost(host);
                 _log.Debug("Creating session");
 
                 var hostType = host.GetType();
 
-                ScriptOptions = ScriptOptions.AddReferences(hostType.GetTypeInfo().Assembly);
+                ScriptOptions = ScriptOptions.AddReferences(typeof(Console).GetTypeInfo().Assembly);
+                //ScriptOptions = ScriptOptions.AddReferences(hostType.GetTypeInfo().Assembly);
 
                 var allNamespaces = namespaces.Union(scriptPackSession.Namespaces).Distinct();
 

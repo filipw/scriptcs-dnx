@@ -1,3 +1,5 @@
+using ScriptCs.Dnx.Command;
+
 namespace ScriptCs.Dnx
 {
     internal static class Application

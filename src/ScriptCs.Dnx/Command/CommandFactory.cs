@@ -1,9 +1,8 @@
 ﻿using System;
-using ScriptCs.Dnx.Command;
 using ScriptCs.Dnx.Contracts;
 using ScriptCs.Dnx.Hosting;
 
-namespace ScriptCs.Dnx
+namespace ScriptCs.Dnx.Command
 {
     public class CommandFactory
     {

@@ -9,6 +9,8 @@ using ScriptCs.Dnx.Hosting.Package;
 
 namespace ScriptCs.Dnx.Hosting
 {
+    //todo!
+
     public class RuntimeServices : ScriptServicesRegistration, IRuntimeServices
     {
         private readonly ILog _log;
@@ -104,11 +106,11 @@ namespace ScriptCs.Dnx.Hosting
                 builder, b => b.RegisterInstance(_console));
 
             //todo: deal with these non-core features
-            //RegisterOverrideOrDefault<IFileSystemMigrator>(
-            //    builder, b => b.RegisterType<FileSystemMigrator>().As<IFileSystemMigrator>().SingleInstance());
+            RegisterOverrideOrDefault<IFileSystemMigrator>(
+                builder, b => b.RegisterType<NullFileSystemMigrator>().As<IFileSystemMigrator>().SingleInstance());
 
-            //RegisterOverrideOrDefault<IScriptLibraryComposer>(
-            //    builder, b => b.RegisterType<ScriptLibraryComposer>().As<IScriptLibraryComposer>().SingleInstance());
+            RegisterOverrideOrDefault<IScriptLibraryComposer>(
+                builder, b => b.RegisterType<NullScriptLibraryComposer>().As<IScriptLibraryComposer>().SingleInstance());
 
             //RegisterOverrideOrDefault<IVisualStudioSolutionWriter>(
             //    builder, b => b.RegisterType<VisualStudioSolutionWriter>().As<IVisualStudioSolutionWriter>().SingleInstance());

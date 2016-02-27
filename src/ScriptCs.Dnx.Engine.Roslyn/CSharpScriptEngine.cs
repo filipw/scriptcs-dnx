@@ -1,7 +1,10 @@
+using System;
+using System.Reflection;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using Microsoft.CodeAnalysis.Scripting.Hosting;
 using ScriptCs.Dnx.Contracts;
 
 namespace ScriptCs.Dnx.Engine.Roslyn
@@ -16,7 +19,14 @@ namespace ScriptCs.Dnx.Engine.Roslyn
         protected override ScriptState GetScriptState(string code, object globals)
         {
             //todo: async all the things?
-            return CSharpScript.RunAsync(code, ScriptOptions, globals).Result;
+            //todo: move this up cause it won't work the REPL
+            using (var loader = new InteractiveAssemblyLoader())
+            {
+                //todo: don't hardcode IScriptHost
+                loader.RegisterDependency(typeof(IScriptHost).GetTypeInfo().Assembly);
+                var script = CSharpScript.Create(code, ScriptOptions, typeof(IScriptHost), loader);
+                return script.RunAsync(globals).Result;
+            }
         }
 
         protected bool IsCompleteSubmission(string code)

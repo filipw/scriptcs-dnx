@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using ScriptCs.Dnx.Contracts;
 using ScriptCs.Dnx.Core;
+using ScriptCs.Dnx.Engine.Roslyn;
 
 namespace ScriptCs.Dnx.Hosting
 {
@@ -46,7 +47,9 @@ namespace ScriptCs.Dnx.Hosting
             var defaultReplType = typeof(Repl);
             _replType = Overrides.ContainsKey(typeof(IRepl)) ? (Type)Overrides[typeof(IRepl)] : defaultReplType;
 
-            _scriptEngineType = (Type)Overrides[typeof(IScriptEngine)];
+            //todo: this hardcodes the engine for now
+            var defaultEngineType = typeof (CSharpScriptEngine);
+            _scriptEngineType = Overrides.ContainsKey(typeof(IScriptEngine)) ? (Type)Overrides[typeof(IScriptEngine)] : defaultEngineType;
 
             bool initDirectoryCatalog;
 

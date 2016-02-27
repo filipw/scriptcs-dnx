@@ -124,6 +124,11 @@ namespace ScriptCs.Dnx.Hosting.Package
 
         public IEnumerable<IPackageReference> FindReferences(string path)
         {
+            if (!File.Exists(path))
+            {
+                yield break;
+            }
+
             var packagesConfig = XDocument.Parse(File.ReadAllText(path));
             var reader = new PackagesConfigReader(packagesConfig);
 

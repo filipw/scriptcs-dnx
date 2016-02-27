@@ -1,124 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using ScriptCs.Dnx.Contracts;
+using System.IO;
 using ScriptCs.Dnx.Core;
+using System.Linq;
 
 namespace ScriptCs.Dnx
 {
     public class Program
     {
-        public void Main(string[] args)
+        public int Main(string[] args)
         {
-            var dir = @"C:\code\dummy\";
-            var scriptFile = @"C:\code\dummy\foo.csx";
 
-            var fs = new FileSystem {CurrentDirectory = dir};
+            var nonScriptArgs = args.TakeWhile(arg => arg != "--").ToArray();
+            var scriptArgs = args.Skip(nonScriptArgs.Length + 1).ToArray();
 
-            var filePreProcessor = new FilePreProcessor(fs, new List<ILineProcessor>
+            ScriptCsArgs commandArgs;
+            try
             {
-                new LoadLineProcessor(fs), new ReferenceLineProcessor(fs), new UsingLineProcessor()
-            });
-            var result = filePreProcessor.ProcessFile(scriptFile);
-
-            foreach (var loadedScript in result.LoadedScripts)
+                commandArgs = ScriptCsArgs.Parse(nonScriptArgs);
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine(loadedScript);
+                Console.WriteLine(ex.Message);
+                return 1;
             }
 
-            foreach (var reference in result.References)
+            if (commandArgs.Config != null && !File.Exists(commandArgs.Config))
             {
-                Console.WriteLine(reference);
+                Console.WriteLine("The specified config file does not exist.");
+                return 1;
             }
 
-            foreach (var ns in result.Namespaces)
-            {
-                Console.WriteLine(ns);
-            }
-
-            //var assemblyResolver = new AssemblyResolver(fs);
-            //var binaries = assemblyResolver.GetAssemblyPaths(fs.CurrentDirectory);
-            //foreach (var binary in binaries)
-            //{
-            //    Console.WriteLine();
-            //    Console.WriteLine(binary);
-            //    Console.WriteLine("-----");
-            //}
-
-            Console.ReadLine();
-        }
-    }
-
-    public class ScriptCsArgs
-    {
-        public bool Repl { get; set; }
-
-        public string ScriptName { get; set; }
-
-        public bool Help { get; set; }
-
-        public bool Debug { get; set; }
-
-        public bool Cache { get; set; }
-
-        public LogLevel? LogLevel { get; set; }
-
-        public string Install { get; set; }
-
-        public bool Global { get; set; }
-
-        public bool Save { get; set; }
-
-        public bool Clean { get; set; }
-
-        public bool AllowPreRelease { get; set; }
-
-        public bool Version { get; set; }
-
-        public bool Watch { get; set; }
-
-        public string Modules { get; set; }
-
-        public string Config { get; set; }
-
-        public string PackageVersion { get; set; }
-
-        public string Output { get; set; }
-
-        public static ScriptCsArgs Parse(string[] args)
-        {
-            if (args == null) throw new ArgumentNullException(nameof(args));
-
-            var curatedArgs = new List<string>();
-            string implicitPackageVersion = null;
-            for (var index = 0; index < args.Length; ++index)
-            {
-                if (index < args.Length - 2 &&
-                    (string.Equals(args[index], "-install", StringComparison.OrdinalIgnoreCase) ||
-                        string.Equals(args[index], "-i", StringComparison.OrdinalIgnoreCase)) &&
-                    !args[index + 1].StartsWith("-", StringComparison.Ordinal) &&
-                    !args[index + 2].StartsWith("-", StringComparison.Ordinal))
-                {
-                    curatedArgs.Add(args[index]);
-                    curatedArgs.Add(args[index + 1]);
-                    implicitPackageVersion = args[index + 2];
-                    index += 2;
-                }
-                else
-                {
-                    curatedArgs.Add(args[index]);
-                }
-            }
-
-            //todo! right now we hardcode scriptrunning
-            //var scriptCsArgs = Args.Parse<ScriptCsArgs>(curatedArgs.ToArray());
-            //scriptCsArgs.PackageVersion = scriptCsArgs.PackageVersion ?? implicitPackageVersion;
-
-            if (args.Length == 0) return new ScriptCsArgs {Repl = true};
-
-            return new ScriptCsArgs
-            {
-                ScriptName = args[0]
-            };
+            return Application.Run(Config.Create(commandArgs), scriptArgs);
         }
     }
 }

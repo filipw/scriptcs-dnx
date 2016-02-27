@@ -12,31 +12,33 @@ namespace ScriptCs.Dnx.Core
     {
         private readonly ILog _log;
 
+        //todo
         public static readonly string[] DefaultReferences =
         {
             "System",
-            "System.Core",
-            "System.Data",
-            "System.Data.DataSetExtensions",
-            "System.Xml",
-            "System.Xml.Linq",
-            "System.Net.Http",
-            "Microsoft.CSharp",
+            //"System.Core",
+            //"System.Data",
+            //"System.Data.DataSetExtensions",
+            //"System.Xml",
+            //"System.Xml.Linq",
+            //"System.Net.Http",
+            //"Microsoft.CSharp",
             //todo: no location available anymore
             //typeof(ScriptExecutor).Assembly.Location,
             //typeof(IScriptEnvironment).Assembly.Location
         };
 
+        //todo
         public static readonly string[] DefaultNamespaces =
         {
             "System",
-            "System.Collections.Generic",
-            "System.Linq",
-            "System.Text",
-            "System.Threading.Tasks",
-            "System.IO",
-            "System.Net.Http",
-            "System.Dynamic"
+            //"System.Collections.Generic",
+            //"System.Linq",
+            //"System.Text",
+            //"System.Threading.Tasks",
+            //"System.IO",
+            //"System.Net.Http",
+            //"System.Dynamic"
         };
 
         private const string ScriptLibrariesInjected = "ScriptLibrariesInjected";
