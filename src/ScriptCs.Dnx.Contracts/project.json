@@ -7,16 +7,15 @@
   "licenseUrl": "",
 
   "dependencies": {
+    "System.Collections": "4.0.11-*",
+    "System.Linq": "4.0.1-*",
+    "System.Threading": "4.0.11-*",
+    "Microsoft.CSharp": "4.0.1-*",
+    "System.Console": "4.0.0-*",
+    "System.IO.FileSystem": "4.0.1-*"
   },
 
   "frameworks": {
-    "dnxcore50": {
-      "dependencies": {
-        "System.Collections": "4.0.11-*",
-        "System.Linq": "4.0.1-*",
-        "System.Threading": "4.0.11-*",
-        "Microsoft.CSharp": "4.0.1-*"
-      }
-    }
+    "dnxcore50": { }
   }
 }

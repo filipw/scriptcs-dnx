@@ -35,14 +35,14 @@ namespace ScriptCs.Dnx
                 Console.WriteLine(ns);
             }
 
-            var assemblyResolver = new AssemblyResolver(fs);
-            var binaries = assemblyResolver.GetAssemblyPaths(fs.CurrentDirectory);
-            foreach (var binary in binaries)
-            {
-                Console.WriteLine();
-                Console.WriteLine(binary);
-                Console.WriteLine("-----");
-            }
+            //var assemblyResolver = new AssemblyResolver(fs);
+            //var binaries = assemblyResolver.GetAssemblyPaths(fs.CurrentDirectory);
+            //foreach (var binary in binaries)
+            //{
+            //    Console.WriteLine();
+            //    Console.WriteLine(binary);
+            //    Console.WriteLine("-----");
+            //}
 
             Console.ReadLine();
         }

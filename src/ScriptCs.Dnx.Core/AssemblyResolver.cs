@@ -1,9 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml.Linq;
-using NuGet.Frameworks;
-using NuGet.Packaging;
 using ScriptCs.Dnx.Contracts;
 
 namespace ScriptCs.Dnx.Core
@@ -12,14 +10,30 @@ namespace ScriptCs.Dnx.Core
     {
         private readonly Dictionary<string, List<string>> _assemblyPathCache = new Dictionary<string, List<string>>();
         private readonly IFileSystem _fileSystem;
+        private readonly IPackageAssemblyResolver _packageAssemblyResolver;
+        private readonly IAssemblyUtility _assemblyUtility;
+        private readonly ILog _logger;
 
-        public AssemblyResolver(IFileSystem fileSystem)
+        public AssemblyResolver(
+            IFileSystem fileSystem,
+            IPackageAssemblyResolver packageAssemblyResolver,
+            IAssemblyUtility assemblyUtility,
+            ILogProvider logProvider)
         {
+            if (fileSystem == null) throw new ArgumentNullException(nameof(fileSystem));
+            if (packageAssemblyResolver == null) throw new ArgumentNullException(nameof(packageAssemblyResolver));
+            if (assemblyUtility == null) throw new ArgumentNullException(nameof(assemblyUtility));
+            if (logProvider == null) throw new ArgumentNullException(nameof(logProvider));
+
             _fileSystem = fileSystem;
+            _packageAssemblyResolver = packageAssemblyResolver;
+            _assemblyUtility = assemblyUtility;
+            _logger = logProvider.ForCurrentType();
         }
 
         public IEnumerable<string> GetAssemblyPaths(string path, bool binariesOnly = false)
         {
+            if (path == null) throw new ArgumentNullException(nameof(path));
             List<string> assemblies;
             if (!_assemblyPathCache.TryGetValue(path, out assemblies))
             {
@@ -27,9 +41,10 @@ namespace ScriptCs.Dnx.Core
                 _assemblyPathCache.Add(path, assemblies);
             }
 
-            return binariesOnly ? assemblies.Where(m =>
-                    Path.GetExtension(m).ToLowerInvariant() == ".dll" ||
-                    Path.GetExtension(m).ToLowerInvariant() == ".exe")
+            return binariesOnly
+                ? assemblies.Where(m =>
+                    m.EndsWith(".dll", StringComparison.OrdinalIgnoreCase) ||
+                    m.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                 : assemblies.ToArray();
         }
 
@@ -41,45 +56,21 @@ namespace ScriptCs.Dnx.Core
                 yield break;
             }
 
-            foreach (var assembly in _fileSystem.EnumerateBinaries(binFolder))
+            foreach (var assembly in _fileSystem.EnumerateBinaries(binFolder, SearchOption.TopDirectoryOnly)
+                .Where(f => _assemblyUtility.IsManagedAssembly(f)))
             {
+                _logger.DebugFormat("Found assembly in bin folder: {0}", Path.GetFileName(assembly));
                 yield return assembly;
             }
         }
 
         private IEnumerable<string> GetPackageAssemblyNames(string path)
         {
-            var compatibilityProvider = new DefaultCompatibilityProvider();
-            var folderReader = new PackageFolderReader(Path.Combine(path, _fileSystem.PackagesFolder));
-            var nupkgFiles = folderReader.GetFiles().Where(x => Path.GetExtension(x).ToLowerInvariant() == ".nupkg");
-
-            var packagesConfig = XDocument.Parse(File.ReadAllText(Path.Combine(path, _fileSystem.PackagesFile)));
-
-            var reader = new PackagesConfigReader(packagesConfig);
-            var contents = reader.GetPackages();
-
-            var result = new List<string>();
-
-            foreach (var nupkg in nupkgFiles)
+            foreach (var assembly in _packageAssemblyResolver.GetAssemblyNames(path))
             {
-                var stream = folderReader.GetStream(nupkg);
-                var packageReader = new PackageReader(stream);
-
-                var identity = packageReader.GetIdentity();
-                var packagesConfigReference = contents.FirstOrDefault(x => x.PackageIdentity.Id == identity.Id && x.PackageIdentity.Version == identity.Version);
-
-                if (packagesConfigReference == null)
-                {
-                    break;
-                }
-
-                var packageContents = packageReader.GetLibItems().Where(x => compatibilityProvider.IsCompatible(x.TargetFramework, packagesConfigReference.TargetFramework)).
-                    SelectMany(x => x.Items.Where(i => Path.GetExtension(i).ToLowerInvariant() == ".dll"));
-
-                result.AddRange(packageContents);
+                _logger.DebugFormat("Found package assembly: {0}", Path.GetFileName(assembly));
+                yield return assembly;
             }
-
-            return result;
         }
     }
 }

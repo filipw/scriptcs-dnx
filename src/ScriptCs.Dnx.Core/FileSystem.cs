@@ -7,19 +7,22 @@ namespace ScriptCs.Dnx.Core
 {
     public class FileSystem : IFileSystem
     {
-        public virtual IEnumerable<string> EnumerateFiles(string dir, string searchPattern)
+        public virtual IEnumerable<string> EnumerateFiles(
+            string dir, string searchPattern, SearchOption searchOption = SearchOption.AllDirectories)
         {
-            return Directory.EnumerateFiles(dir, searchPattern);
+            return Directory.EnumerateFiles(dir, searchPattern, searchOption);
         }
 
-        public virtual IEnumerable<string> EnumerateDirectories(string dir, string searchPattern)
+        public virtual IEnumerable<string> EnumerateDirectories(
+            string dir, string searchPattern, SearchOption searchOption = SearchOption.AllDirectories)
         {
-            return Directory.EnumerateDirectories(dir, searchPattern);
+            return Directory.EnumerateDirectories(dir, searchPattern, searchOption);
         }
 
-        public virtual IEnumerable<string> EnumerateFilesAndDirectories(string dir, string searchPattern)
+        public virtual IEnumerable<string> EnumerateFilesAndDirectories(
+            string dir, string searchPattern, SearchOption searchOption = SearchOption.AllDirectories)
         {
-            return Directory.EnumerateFileSystemEntries(dir, searchPattern);
+            return Directory.EnumerateFileSystemEntries(dir, searchPattern, searchOption);
         }
 
         public virtual void Copy(string source, string dest, bool overwrite)
@@ -29,6 +32,10 @@ namespace ScriptCs.Dnx.Core
 
         public virtual void CopyDirectory(string source, string dest, bool overwrite)
         {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (dest == null) throw new ArgumentNullException(nameof(dest));
+            // NOTE: adding guards since the exceptions thrown by System.IO would be confusing
+
             if (!Directory.Exists(dest))
             {
                 Directory.CreateDirectory(dest);
@@ -118,6 +125,8 @@ namespace ScriptCs.Dnx.Core
 
         public virtual IEnumerable<string> SplitLines(string value)
         {
+            if (value == null) throw new ArgumentNullException(nameof(value));
+
             return value.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
         }
 
@@ -136,14 +145,15 @@ namespace ScriptCs.Dnx.Core
             File.WriteAllBytes(filePath, bytes);
         }
 
-        //public virtual string GlobalFolder
-        //{
-        //    get
-        //    {
-        //        return Path.Combine(
-        //            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "scriptcs");
-        //    }
-        //}
+        public virtual string GlobalFolder
+        {
+            get
+            {
+                //todo
+                return CurrentDirectory;
+                //return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "scriptcs");
+            }
+        }
 
         public virtual string GetWorkingDirectory(string path)
         {
@@ -172,10 +182,19 @@ namespace ScriptCs.Dnx.Core
             return Path.GetFullPath(path);
         }
 
-        //public virtual string HostBin
-        //{
-        //    get { return AppDomain.CurrentDomain.BaseDirectory; }
-        //}
+
+        public virtual string TempPath
+        {
+            get
+            {
+                return Path.GetTempPath();
+            }
+        }
+
+        public virtual string HostBin
+        {
+            get { return AppContext.BaseDirectory; }
+        }
 
         public virtual string BinFolder
         {
@@ -202,9 +221,9 @@ namespace ScriptCs.Dnx.Core
             get { return "scriptcs_nuget.config"; }
         }
 
-        //public virtual string GlobalOptsFile
-        //{
-        //    get { return Path.Combine(GlobalFolder, Constants.ConfigFilename); }
-        //}
+        public virtual string GlobalOptsFile
+        {
+            get { return Path.Combine(GlobalFolder, Constants.ConfigFilename); }
+        }
     }
 }

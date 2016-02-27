@@ -3,7 +3,11 @@ using ScriptCs.Dnx.Contracts;
 
 namespace ScriptCs.Dnx.Core
 {
-    public class LoadLineProcessor : DirectiveLineProcessor
+    public interface ILoadLineProcessor : ILineProcessor
+    {
+    }
+
+    public class LoadLineProcessor : DirectiveLineProcessor, ILoadLineProcessor
     {
         private readonly IFileSystem _fileSystem;
 

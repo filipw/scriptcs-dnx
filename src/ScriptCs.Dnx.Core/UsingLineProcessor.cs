@@ -1,8 +1,12 @@
 ﻿using ScriptCs.Dnx.Contracts;
 
 namespace ScriptCs.Dnx.Core
-{
-    public class UsingLineProcessor : ILineProcessor
+{ 
+    public interface IUsingLineProcessor : ILineProcessor
+    {
+    }
+
+    public class UsingLineProcessor : IUsingLineProcessor
     {
         private const string UsingString = "using ";
 
