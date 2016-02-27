@@ -8,7 +8,7 @@ using ScriptCs.Dnx.Contracts;
 
 namespace ScriptCs.Dnx.Core
 {
-    public class AssemblyResolver
+    public class AssemblyResolver : IAssemblyResolver
     {
         private readonly Dictionary<string, List<string>> _assemblyPathCache = new Dictionary<string, List<string>>();
         private readonly IFileSystem _fileSystem;
