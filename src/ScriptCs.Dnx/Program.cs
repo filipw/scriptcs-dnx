@@ -8,8 +8,8 @@ namespace ScriptCs.Dnx
     {
         public void Main(string[] args)
         {
-            var dir = @"C:\Users\filip\Documents\dev\dummy\";
-            var scriptFile = @"C:\Users\filip\Documents\dev\dummy\foo.csx";
+            var dir = @"C:\code\dummy\";
+            var scriptFile = @"C:\code\dummy\foo.csx";
 
             var fs = new FileSystem {CurrentDirectory = dir};
 
