@@ -19,7 +19,9 @@
     "System.Threading": "4.0.11-*",
     "Microsoft.CSharp": "4.0.1-*",
     "System.Console": "4.0.0-*",
-    "System.Runtime":  "4.0.21-*"
+    "System.Runtime": "4.0.21-*",
+    "ScriptCs.Dnx.Engine.Roslyn": "1.0.0-*",
+    "ScriptCs.Dnx.Core": "1.0.0-*"
   },
 
   "commands": {

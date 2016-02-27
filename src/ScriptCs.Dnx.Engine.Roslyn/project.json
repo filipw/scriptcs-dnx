@@ -1,0 +1,21 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "ScriptCs.Dnx.Engine.Roslyn Class Library",
+  "authors": [ "filip" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "dnxcore50": {
+    }
+  },
+  "dependencies": {
+    "Microsoft.CodeAnalysis.CSharp.Scripting": "1.1.1",
+    "ScriptCs.Dnx.Contracts": "1.0.0-*",
+    "System.Collections": "4.0.11-*",
+    "System.Linq": "4.0.1-*",
+    "System.Threading": "4.0.11-*",
+    "Microsoft.CSharp": "4.0.1-*",
+    "ScriptCs.Dnx.Core": "1.0.0-*"
+  }
+}
