@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ScriptCs.Dnx.Contracts;
+using ScriptCs.Dnx.Core;
 
 namespace ScriptCs.Dnx
 {

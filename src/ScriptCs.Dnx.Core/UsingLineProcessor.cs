@@ -1,6 +1,6 @@
 ﻿using ScriptCs.Dnx.Contracts;
 
-namespace ScriptCs.Dnx
+namespace ScriptCs.Dnx.Core
 {
     public class UsingLineProcessor : ILineProcessor
     {

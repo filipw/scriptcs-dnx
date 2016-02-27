@@ -1,14 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Xml.Linq;
 using NuGet.Frameworks;
 using NuGet.Packaging;
 using ScriptCs.Dnx.Contracts;
 
-namespace ScriptCs.Dnx
+namespace ScriptCs.Dnx.Core
 {
     public class AssemblyResolver
     {

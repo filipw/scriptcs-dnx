@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using ScriptCs.Dnx.Contracts;
 
-namespace ScriptCs.Dnx
+namespace ScriptCs.Dnx.Core
 {
     public class FilePreProcessor : IFilePreProcessor
     {

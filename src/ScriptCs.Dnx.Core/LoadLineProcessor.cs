@@ -1,7 +1,7 @@
 ﻿using System;
 using ScriptCs.Dnx.Contracts;
 
-namespace ScriptCs.Dnx
+namespace ScriptCs.Dnx.Core
 {
     public class LoadLineProcessor : DirectiveLineProcessor
     {

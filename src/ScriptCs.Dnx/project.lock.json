@@ -215,6 +215,8 @@
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1",
+          "NuGet.Frameworks": "3.3.0",
+          "NuGet.Packaging": "3.3.0",
           "ScriptCs.Dnx.Contracts": "1.0.0",
           "System.Collections": "4.0.11",
           "System.Linq": "4.0.1",
@@ -1131,6 +1133,8 @@
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1",
+          "NuGet.Frameworks": "3.3.0",
+          "NuGet.Packaging": "3.3.0",
           "ScriptCs.Dnx.Contracts": "1.0.0",
           "System.Collections": "4.0.11",
           "System.Linq": "4.0.1",
@@ -2068,6 +2072,8 @@
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1",
+          "NuGet.Frameworks": "3.3.0",
+          "NuGet.Packaging": "3.3.0",
           "ScriptCs.Dnx.Contracts": "1.0.0",
           "System.Collections": "4.0.11",
           "System.Linq": "4.0.1",
@@ -4468,9 +4474,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "NuGet.Packaging >= 3.3.0",
-      "NuGet.Frameworks >= 3.3.0",
-      "ScriptCs.Dnx.Contracts ",
+      "ScriptCs.Dnx.Contracts >= 1.0.0-*",
       "System.Collections >= 4.0.11-*",
       "System.Linq >= 4.0.1-*",
       "System.Threading >= 4.0.11-*",

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ScriptCs.Dnx
+namespace ScriptCs.Dnx.Core
 {
     public static class Constants
     {
