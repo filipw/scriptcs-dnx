@@ -95,12 +95,13 @@ namespace ScriptCs.Dnx.Hosting
             return GetService(ref _packageInstaller);
         }
 
-        private IAppDomainAssemblyResolver _appDomainAssemblyResolver;
+        //todo: address this
+        //private IAppDomainAssemblyResolver _appDomainAssemblyResolver;
 
-        public IAppDomainAssemblyResolver GetAppDomainAssemblyResolver()
-        {
-            return GetService(ref _appDomainAssemblyResolver);
-        }
+        //public IAppDomainAssemblyResolver GetAppDomainAssemblyResolver()
+        //{
+        //    return GetService(ref _appDomainAssemblyResolver);
+        //}
 
         private IAssemblyUtility _assemblyUtility;
 
