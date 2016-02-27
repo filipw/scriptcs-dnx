@@ -15,7 +15,8 @@
     "System.Console": "4.0.0-*",
     "System.Runtime": "4.0.21-*",
     "ScriptCs.Dnx.Engine.Roslyn": "1.0.0-*",
-    "ScriptCs.Dnx.Core": "1.0.0-*"
+    "ScriptCs.Dnx.Core": "1.0.0-*",
+    "ScriptCs.Dnx.Hosting": "1.0.0-*" 
   },
 
   "commands": {
