@@ -264,6 +264,19 @@
           "lib/DNXCore50/System.Runtime.InteropServices.dll": {}
         }
       },
+      "System.Runtime.Serialization.Primitives/4.0.11-beta-23409": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+        }
+      },
       "System.Text.Encoding/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -576,6 +589,19 @@
           "lib/DNXCore50/System.Runtime.InteropServices.dll": {}
         }
       },
+      "System.Runtime.Serialization.Primitives/4.0.11-beta-23409": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+        }
+      },
       "System.Text.Encoding/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -886,6 +912,19 @@
         },
         "runtime": {
           "lib/DNXCore50/System.Runtime.InteropServices.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Primitives/4.0.11-beta-23409": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet/System.Runtime.Serialization.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
       "System.Text.Encoding/4.0.0": {
@@ -1690,6 +1729,38 @@
         "System.Runtime.InteropServices.nuspec"
       ]
     },
+    "System.Runtime.Serialization.Primitives/4.0.11-beta-23409": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "AQywM01eG8EgYde/RRrJDVdHmOOI3KkgK9GEjLQqvTLsrWsamNHN/j7Pxwa3XX7klSSrfDpvTNfUl40855idVg==",
+      "files": [
+        "lib/dotnet/de/System.Runtime.Serialization.Primitives.xml",
+        "lib/dotnet/es/System.Runtime.Serialization.Primitives.xml",
+        "lib/dotnet/fr/System.Runtime.Serialization.Primitives.xml",
+        "lib/dotnet/it/System.Runtime.Serialization.Primitives.xml",
+        "lib/dotnet/ja/System.Runtime.Serialization.Primitives.xml",
+        "lib/dotnet/ko/System.Runtime.Serialization.Primitives.xml",
+        "lib/dotnet/ru/System.Runtime.Serialization.Primitives.xml",
+        "lib/dotnet/System.Runtime.Serialization.Primitives.dll",
+        "lib/dotnet/System.Runtime.Serialization.Primitives.xml",
+        "lib/dotnet/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "lib/dotnet/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet/System.Runtime.Serialization.Primitives.dll",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "System.Runtime.Serialization.Primitives.4.0.11-beta-23409.nupkg",
+        "System.Runtime.Serialization.Primitives.4.0.11-beta-23409.nupkg.sha512",
+        "System.Runtime.Serialization.Primitives.nuspec"
+      ]
+    },
     "System.Text.Encoding/4.0.0": {
       "type": "package",
       "sha512": "AMxFNOXpA6Ab8swULbXuJmoT2K5w6TnV3ObF5wsmEcIHQUJghoZtDVfVHb08O2wW15mOSI1i9Wg0Dx0pY13o8g==",
@@ -1854,6 +1925,7 @@
       "ScriptCs.Dnx.Contracts >= 1.0.0-*",
       "System.Collections >= 4.0.11-*",
       "System.Linq >= 4.0.1-*",
+      "System.Runtime.Serialization.Primitives >= 4.0.11-*",
       "System.Threading >= 4.0.11-*",
       "Microsoft.CSharp >= 4.0.1-*"
     ],
