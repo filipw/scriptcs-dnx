@@ -48,7 +48,7 @@ namespace ScriptCs.Dnx.Hosting
             _replType = Overrides.ContainsKey(typeof(IRepl)) ? (Type)Overrides[typeof(IRepl)] : defaultReplType;
 
             //todo: this hardcodes the engine for now
-            var defaultEngineType = typeof (CSharpScriptEngine);
+            var defaultEngineType = _repl ? typeof (CSharpScriptEngine) : typeof(CSharpReplEngine);
             _scriptEngineType = Overrides.ContainsKey(typeof(IScriptEngine)) ? (Type)Overrides[typeof(IScriptEngine)] : defaultEngineType;
 
             bool initDirectoryCatalog;

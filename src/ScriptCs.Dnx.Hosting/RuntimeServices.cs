@@ -9,8 +9,6 @@ using ScriptCs.Dnx.Hosting.Package;
 
 namespace ScriptCs.Dnx.Hosting
 {
-    //todo!
-
     public class RuntimeServices : ScriptServicesRegistration, IRuntimeServices
     {
         private readonly ILog _log;
