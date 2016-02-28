@@ -2,6 +2,7 @@
 using System.IO;
 using ScriptCs.Dnx.Core;
 using System.Linq;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace ScriptCs.Dnx
 {
@@ -9,6 +10,7 @@ namespace ScriptCs.Dnx
     {
         public int Main(string[] args)
         {
+            var libs = DnxPlatformServices.Default.LibraryManager.GetLibraries();
 
             var nonScriptArgs = args.TakeWhile(arg => arg != "--").ToArray();
             var scriptArgs = args.Skip(nonScriptArgs.Length + 1).ToArray();

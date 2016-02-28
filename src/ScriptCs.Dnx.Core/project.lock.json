@@ -111,16 +111,13 @@
           "System.Threading": "4.0.11"
         }
       },
-      "System.AppContext/4.0.1-rc2-23623": {
+      "System.AppContext/4.1.0-rc2-23819": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.0"
         },
         "compile": {
-          "ref/dotnet5.4/System.AppContext.dll": {}
-        },
-        "runtime": {
-          "lib/DNXCore50/System.AppContext.dll": {}
+          "ref/dotnet5.6/System.AppContext.dll": {}
         }
       },
       "System.Collections/4.0.11-rc2-23819": {
@@ -609,6 +606,15 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1-beta-23516": {
         "type": "package"
       },
+      "runtime.any.System.AppContext/4.1.0-rc2-23819": {
+        "type": "package",
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/System.AppContext.dll": {}
+        }
+      },
       "runtime.any.System.Collections/4.0.11-rc2-23819": {
         "type": "package",
         "dependencies": {
@@ -726,8 +732,8 @@
         "native": {
           "runtimes/win7-x86/native/API-MS-Win-Base-Util-L1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-com-l1-1-0.dll": {},
-          "runtimes/win7-x86/native/api-ms-win-core-com-private-l1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-comm-l1-1-0.dll": {},
+          "runtimes/win7-x86/native/api-ms-win-core-com-private-l1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-console-l1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-console-l2-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-datetime-l1-1-0.dll": {},
@@ -790,13 +796,13 @@
           "runtimes/win7-x86/native/api-ms-win-core-shlwapi-obsolete-l1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-shutdown-l1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-shutdown-l1-1-1.dll": {},
+          "runtimes/win7-x86/native/API-MS-Win-Core-StringAnsi-L1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-string-l1-1-0.dll": {},
           "runtimes/win7-x86/native/API-MS-Win-Core-String-L2-1-0.dll": {},
-          "runtimes/win7-x86/native/api-ms-win-core-string-obsolete-l1-1-0.dll": {},
-          "runtimes/win7-x86/native/api-ms-win-core-string-obsolete-l1-1-1.dll": {},
-          "runtimes/win7-x86/native/API-MS-Win-Core-StringAnsi-L1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-stringloader-l1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-stringloader-l1-1-1.dll": {},
+          "runtimes/win7-x86/native/api-ms-win-core-string-obsolete-l1-1-0.dll": {},
+          "runtimes/win7-x86/native/api-ms-win-core-string-obsolete-l1-1-1.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-synch-l1-1-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-synch-l1-2-0.dll": {},
           "runtimes/win7-x86/native/api-ms-win-core-sysinfo-l1-1-0.dll": {},
@@ -860,16 +866,13 @@
           "System.Threading": "4.0.11"
         }
       },
-      "System.AppContext/4.0.1-rc2-23623": {
+      "System.AppContext/4.1.0-rc2-23819": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.0"
         },
         "compile": {
-          "ref/dotnet5.4/System.AppContext.dll": {}
-        },
-        "runtime": {
-          "lib/DNXCore50/System.AppContext.dll": {}
+          "ref/dotnet5.6/System.AppContext.dll": {}
         }
       },
       "System.Buffers/4.0.0-rc2-23819": {
@@ -1387,6 +1390,15 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1-beta-23516": {
         "type": "package"
       },
+      "runtime.any.System.AppContext/4.1.0-rc2-23819": {
+        "type": "package",
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/System.AppContext.dll": {}
+        }
+      },
       "runtime.any.System.Collections/4.0.11-rc2-23819": {
         "type": "package",
         "dependencies": {
@@ -1504,8 +1516,8 @@
         "native": {
           "runtimes/win7-x64/native/API-MS-Win-Base-Util-L1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-com-l1-1-0.dll": {},
-          "runtimes/win7-x64/native/api-ms-win-core-com-private-l1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-comm-l1-1-0.dll": {},
+          "runtimes/win7-x64/native/api-ms-win-core-com-private-l1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-console-l1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-console-l2-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-datetime-l1-1-0.dll": {},
@@ -1568,13 +1580,13 @@
           "runtimes/win7-x64/native/api-ms-win-core-shlwapi-obsolete-l1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-shutdown-l1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-shutdown-l1-1-1.dll": {},
+          "runtimes/win7-x64/native/API-MS-Win-Core-StringAnsi-L1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-string-l1-1-0.dll": {},
           "runtimes/win7-x64/native/API-MS-Win-Core-String-L2-1-0.dll": {},
-          "runtimes/win7-x64/native/api-ms-win-core-string-obsolete-l1-1-0.dll": {},
-          "runtimes/win7-x64/native/api-ms-win-core-string-obsolete-l1-1-1.dll": {},
-          "runtimes/win7-x64/native/API-MS-Win-Core-StringAnsi-L1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-stringloader-l1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-stringloader-l1-1-1.dll": {},
+          "runtimes/win7-x64/native/api-ms-win-core-string-obsolete-l1-1-0.dll": {},
+          "runtimes/win7-x64/native/api-ms-win-core-string-obsolete-l1-1-1.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-synch-l1-1-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-synch-l1-2-0.dll": {},
           "runtimes/win7-x64/native/api-ms-win-core-sysinfo-l1-1-0.dll": {},
@@ -1638,16 +1650,13 @@
           "System.Threading": "4.0.11"
         }
       },
-      "System.AppContext/4.0.1-rc2-23623": {
+      "System.AppContext/4.1.0-rc2-23819": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.0"
         },
         "compile": {
-          "ref/dotnet5.4/System.AppContext.dll": {}
-        },
-        "runtime": {
-          "lib/DNXCore50/System.AppContext.dll": {}
+          "ref/dotnet5.6/System.AppContext.dll": {}
         }
       },
       "System.Buffers/4.0.0-rc2-23819": {
@@ -2166,6 +2175,26 @@
         "runtime.json"
       ]
     },
+    "runtime.any.System.AppContext/4.1.0-rc2-23819": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "N4S9BYNPmaz9mExpn5KHX6RY8Li4V1cxWA34d+XihwqGtDcULW33u/OnccS+wIsNhSLEnTvQ+rWU4g9+DKgXjg==",
+      "files": [
+        "dotnet_library_license.txt",
+        "lib/dnxcore50/System.AppContext.dll",
+        "lib/dotnet5.6/System.AppContext.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet/_._",
+        "runtime.any.System.AppContext.4.1.0-rc2-23819.nupkg",
+        "runtime.any.System.AppContext.4.1.0-rc2-23819.nupkg.sha512",
+        "runtime.any.System.AppContext.nuspec",
+        "ThirdPartyNotices.txt"
+      ]
+    },
     "runtime.any.System.Collections/4.0.11-rc2-23819": {
       "type": "package",
       "serviceable": true,
@@ -2654,16 +2683,16 @@
         "runtimes/win8-x86/native/api-ms-win-service-private-l1-1-1.dll"
       ]
     },
-    "System.AppContext/4.0.1-rc2-23623": {
+    "System.AppContext/4.1.0-rc2-23819": {
       "type": "package",
       "serviceable": true,
-      "sha512": "qA4bMWNB7JPSMOoyXZEgL+EQ1ChhDyvcwW5+3MH1cb2sBstH67NvoKQSaWo5GkYuWxy6BWOJWD6BWtYOoJ3DaQ==",
+      "sha512": "mrD9SpQL0ePZVIHVGFjgZrHpidfeOC9G7U9V+kuZz3KKqQ5pnre3kGCnyUGb+9cMjeb5OJ2k+MoqQs0wrxqOzg==",
       "files": [
-        "lib/DNXCore50/System.AppContext.dll",
+        "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
         "lib/net46/System.AppContext.dll",
-        "lib/netcore50/System.AppContext.dll",
+        "lib/net462/System.AppContext.dll",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
         "ref/dotnet5.4/de/System.AppContext.xml",
@@ -2677,14 +2706,27 @@
         "ref/dotnet5.4/System.AppContext.xml",
         "ref/dotnet5.4/zh-hans/System.AppContext.xml",
         "ref/dotnet5.4/zh-hant/System.AppContext.xml",
+        "ref/dotnet5.6/de/System.AppContext.xml",
+        "ref/dotnet5.6/es/System.AppContext.xml",
+        "ref/dotnet5.6/fr/System.AppContext.xml",
+        "ref/dotnet5.6/it/System.AppContext.xml",
+        "ref/dotnet5.6/ja/System.AppContext.xml",
+        "ref/dotnet5.6/ko/System.AppContext.xml",
+        "ref/dotnet5.6/ru/System.AppContext.xml",
+        "ref/dotnet5.6/System.AppContext.dll",
+        "ref/dotnet5.6/System.AppContext.xml",
+        "ref/dotnet5.6/zh-hans/System.AppContext.xml",
+        "ref/dotnet5.6/zh-hant/System.AppContext.xml",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
-        "ref/net46/System.AppContext.dll",
+        "ref/net462/System.AppContext.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
-        "System.AppContext.4.0.1-rc2-23623.nupkg",
-        "System.AppContext.4.0.1-rc2-23623.nupkg.sha512",
-        "System.AppContext.nuspec"
+        "runtime.json",
+        "System.AppContext.4.1.0-rc2-23819.nupkg",
+        "System.AppContext.4.1.0-rc2-23819.nupkg.sha512",
+        "System.AppContext.nuspec",
+        "ThirdPartyNotices.txt"
       ]
     },
     "System.Buffers/4.0.0-rc2-23819": {
@@ -4313,7 +4355,7 @@
       "System.Threading >= 4.0.11-*",
       "Microsoft.CSharp >= 4.0.1-*",
       "System.IO.FileSystem >= 4.0.1-*",
-      "System.AppContext >= 4.0.1-*"
+      "System.AppContext >= 4.1.0-*"
     ],
     "DNXCore,Version=v5.0": []
   }

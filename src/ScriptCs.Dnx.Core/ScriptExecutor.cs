@@ -16,7 +16,6 @@ namespace ScriptCs.Dnx.Core
         public static readonly string[] DefaultReferences =
         {
             "System",
-            "System.Runtime"
             //"System.Core",
             //"System.Data",
             //"System.Data.DataSetExtensions",

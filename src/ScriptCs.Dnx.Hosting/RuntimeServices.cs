@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using Autofac;
 using ScriptCs.Dnx.Contracts;
 using ScriptCs.Dnx.Core;

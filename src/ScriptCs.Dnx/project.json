@@ -5,19 +5,19 @@
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
-
   "dependencies": {
-    "Microsoft.NETCore.Runtime": "1.0.1-beta-*", 
+    "Microsoft.NETCore.Runtime": "1.0.1-beta-*",
     "ScriptCs.Dnx.Contracts": "1.0.0-*",
     "System.Collections": "4.0.11-*",
     "System.Linq": "4.0.1-*",
     "System.Threading": "4.0.11-*",
     "Microsoft.CSharp": "4.0.1-*",
     "System.Console": "4.0.0-*",
-    "System.Runtime": "4.0.21-*",
+    "System.Runtime": "4.1.0-rc2-23819",
     "ScriptCs.Dnx.Engine.Roslyn": "1.0.0-*",
     "ScriptCs.Dnx.Core": "1.0.0-*",
-    "ScriptCs.Dnx.Hosting": "1.0.0-*"
+    "ScriptCs.Dnx.Hosting": "1.0.0-*",
+    "Microsoft.Extensions.PlatformAbstractions.Dnx": "1.0.0-rc2-*"
   },
 
   "commands": {
@@ -25,6 +25,6 @@
   },
 
   "frameworks": {
-    "dnxcore50": {}
+    "dnxcore50": { }
   }
 }

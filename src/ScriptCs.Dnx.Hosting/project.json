@@ -5,6 +5,9 @@
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
+  "compilationOptions": {
+    "preserveCompilationContext": true,
+  },
   "dependencies": {
     "Autofac": "4.0.0-rc1-*",
     "Microsoft.CSharp": "4.0.1-*",
@@ -12,15 +15,14 @@
     "ScriptCs.Dnx.Core": "1.0.0-*",
     "System.Collections": "4.0.11-*",
     "System.Linq": "4.0.1-*",
-    "System.Runtime": "4.0.21-*",
     "System.Console": "4.0.0-*",
     "System.Threading": "4.0.11-*",
     "NuGet.Packaging": "3.3.0",
     "NuGet.Frameworks": "3.3.0",
     "Newtonsoft.Json": "8.0.2",
-    "ScriptCs.Dnx.Engine.Roslyn": "1.0.0-*" 
+    "ScriptCs.Dnx.Engine.Roslyn": "1.0.0-*"
   },
   "frameworks": {
-    "dnxcore50": {}
+    "dnxcore50": { }
   }
 }
