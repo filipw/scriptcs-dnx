@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using Microsoft.CodeAnalysis.Scripting.Hosting;
 using ScriptCs.Dnx.Contracts;
 using ScriptCs.Dnx.Core;
 
@@ -13,6 +15,8 @@ namespace ScriptCs.Dnx.Engine.Roslyn
     public abstract class CommonScriptEngine : IScriptEngine
     {
         protected ScriptOptions ScriptOptions;
+        protected InteractiveAssemblyLoader Loader;
+
         private readonly IScriptHostFactory _scriptHostFactory;
         private readonly ILog _log;
 
@@ -24,6 +28,7 @@ namespace ScriptCs.Dnx.Engine.Roslyn
             ScriptOptions = ScriptOptions.Default.AddReferences(typeof (Object).GetTypeInfo().Assembly);
             _scriptHostFactory = scriptHostFactory;
             _log = logProvider.ForCurrentType();
+            Loader = new InteractiveAssemblyLoader();
         }
 
         public string BaseDirectory
@@ -68,9 +73,10 @@ namespace ScriptCs.Dnx.Engine.Roslyn
                 _log.Debug("Creating session");
 
                 var hostType = host.GetType();
+                Loader.RegisterDependency(hostType.GetTypeInfo().Assembly);
 
-                ScriptOptions = ScriptOptions.AddReferences(typeof(Console).GetTypeInfo().Assembly);
-                //ScriptOptions = ScriptOptions.AddReferences(hostType.GetTypeInfo().Assembly);
+                //ScriptOptions = ScriptOptions.AddReferences(typeof(Console).GetTypeInfo().Assembly);
+                ScriptOptions = ScriptOptions.AddReferences(typeof(Object).GetTypeInfo().Assembly);
 
                 var allNamespaces = namespaces.Union(scriptPackSession.Namespaces).Distinct();
 
@@ -156,10 +162,14 @@ namespace ScriptCs.Dnx.Engine.Roslyn
             try
             {
                 _log.Debug("Starting execution");
-                var result = GetScriptState(code, globals);
+
+                var script = CSharpScript.Create(code, ScriptOptions, globals.GetType(), Loader);
+                sessionState.Session = sessionState.Session == null ? 
+                    script.RunAsync(globals).Result : 
+                    sessionState.Session.ContinueWithAsync(code).Result;
+
                 _log.Debug("Finished execution");
-                sessionState.Session = result;
-                return new ScriptResult(returnValue: result.ReturnValue);
+                return new ScriptResult(returnValue: sessionState.Session.ReturnValue);
             }
             catch (AggregateException ex)
             {
@@ -174,8 +184,5 @@ namespace ScriptCs.Dnx.Engine.Roslyn
                 return new ScriptResult(executionException: ex);
             }
         }
-
-        protected abstract ScriptState GetScriptState(string code, object globals);
-
     }
 }

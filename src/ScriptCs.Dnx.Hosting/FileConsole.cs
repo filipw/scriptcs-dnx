@@ -35,9 +35,9 @@ namespace ScriptCs.Dnx.Hosting
             this.AppendLine(value);
         }
 
-        public string ReadLine(string prompt)
+        public string ReadLine()
         {
-            var line = _innerConsole.ReadLine("");
+            var line = _innerConsole.ReadLine();
             this.AppendLine(line);
             return line;
         }

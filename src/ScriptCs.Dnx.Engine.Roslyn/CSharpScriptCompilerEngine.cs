@@ -35,11 +35,6 @@ namespace ScriptCs.Dnx.Engine.Roslyn
                 : InvokeEntryPointMethod(globals, LoadAssemblyFromCache());
         }
 
-        protected override ScriptState GetScriptState(string code, object globals)
-        {
-            return null;
-        }
-
         protected ScriptResult CompileAndExecute(string code, object globals)
         {
             _log.Debug("Compiling submission");

@@ -6,6 +6,11 @@ namespace ScriptCs.Dnx.Hosting
     //todo: add the mono line editor
     public class ScriptConsole : IConsole
     {
+        public ScriptConsole()
+        {
+            Console.CancelKeyPress += HandleCancelKeyPress;
+        }
+
         public void Write(string value)
         {
             Console.Write(value);
@@ -21,7 +26,7 @@ namespace ScriptCs.Dnx.Hosting
             Console.WriteLine(value);
         }
 
-        public string ReadLine(string prompt)
+        public string ReadLine()
         {
             return Console.ReadLine();
         }
@@ -34,6 +39,7 @@ namespace ScriptCs.Dnx.Hosting
         public void Exit()
         {
             ResetColor();
+            Console.CancelKeyPress -= HandleCancelKeyPress;
             Environment.FailFast("Ciao!");
         }
 
@@ -46,6 +52,11 @@ namespace ScriptCs.Dnx.Hosting
         {
             get { return Console.ForegroundColor; }
             set { Console.ForegroundColor = value; }
+        }
+
+        private void HandleCancelKeyPress(object sender, ConsoleCancelEventArgs e)
+        {
+            ResetColor();
         }
     }
 }

@@ -4,4 +4,8 @@
     {
         CommandResult Execute();
     }
+
+    public interface IExecuteReplCommand : IScriptCommand
+    {
+    }
 }

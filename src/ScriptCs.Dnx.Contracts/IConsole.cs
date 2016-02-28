@@ -10,7 +10,7 @@ namespace ScriptCs.Dnx.Contracts
 
         void WriteLine(string value);
 
-        string ReadLine(string prompt);
+        string ReadLine();
 
         void Clear();
 

@@ -39,6 +39,23 @@ namespace ScriptCs.Dnx.Command
             if (scriptArgs == null) throw new ArgumentNullException(nameof(scriptArgs));
             var scriptServices = _scriptServicesBuilder.Build();
 
+            if (config.Repl)
+            {
+                var explicitReplCommand = new ExecuteReplCommand(
+                    config.ScriptName,
+                    scriptArgs,
+                    scriptServices.FileSystem,
+                    scriptServices.ScriptPackResolver,
+                    scriptServices.Repl,
+                    scriptServices.LogProvider,
+                    scriptServices.Console,
+                    scriptServices.AssemblyResolver,
+                    scriptServices.FileSystemMigrator,
+                    scriptServices.ScriptLibraryComposer);
+
+                return explicitReplCommand;
+            }
+
             return new ExecuteScriptCommand(
                 config.ScriptName,
                 scriptArgs,
