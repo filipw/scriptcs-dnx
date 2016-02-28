@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Reflection;
 using ScriptCs.Dnx.Contracts;
 using ScriptCs.Dnx.Core;
 
@@ -5,7 +7,7 @@ namespace ScriptCs.Dnx.Hosting
 {
     public interface IScriptServicesBuilder : IServiceOverrides<IScriptServicesBuilder>
     {
-        ScriptServices Build();
+        ScriptServices Build(IEnumerable<Assembly> applicationAssemblies);
 
         IScriptServicesBuilder Cache(bool cache = true);
 

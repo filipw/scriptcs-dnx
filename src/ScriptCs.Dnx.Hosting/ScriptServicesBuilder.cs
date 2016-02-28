@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using ScriptCs.Dnx.Contracts;
 using ScriptCs.Dnx.Core;
 using ScriptCs.Dnx.Engine.Roslyn;
@@ -37,7 +39,7 @@ namespace ScriptCs.Dnx.Hosting
             _logProvider = logProvider;
         }
 
-        public ScriptServices Build()
+        public ScriptServices Build(IEnumerable<Assembly> applicationAssemblies)
         {
             var defaultExecutorType = typeof(ScriptExecutor);
             _scriptExecutorType = Overrides.ContainsKey(typeof(IScriptExecutor))
@@ -73,7 +75,7 @@ namespace ScriptCs.Dnx.Hosting
                     _replType,
                     initDirectoryCatalog,
                     InitializationServices,
-                    _scriptName);
+                    _scriptName, applicationAssemblies);
             }
 
             return _runtimeServices.GetScriptServices();

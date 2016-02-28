@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
+using Microsoft.Extensions.PlatformAbstractions;
 using ScriptCs.Dnx.Contracts;
 using ScriptCs.Dnx.Hosting;
 
@@ -37,7 +40,12 @@ namespace ScriptCs.Dnx.Command
         public ICommand CreateCommand(Config config, string[] scriptArgs)
         {
             if (scriptArgs == null) throw new ArgumentNullException(nameof(scriptArgs));
-            var scriptServices = _scriptServicesBuilder.Build();
+
+            var libs =
+                DnxPlatformServices.Default.LibraryManager.GetLibraries()
+                    .Where(x => x.Name.ToLower().Contains("scriptcs"))
+                    .SelectMany(x => x.Assemblies).Select(x => Assembly.Load(x));
+            var scriptServices = _scriptServicesBuilder.Build(libs);
 
             if (config.Repl)
             {

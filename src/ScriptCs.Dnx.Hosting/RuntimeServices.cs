@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Autofac;
 using ScriptCs.Dnx.Contracts;
 using ScriptCs.Dnx.Core;
 using ScriptCs.Dnx.Hosting.Package;
+using System.Linq;
 
 namespace ScriptCs.Dnx.Hosting
 {
@@ -17,6 +19,7 @@ namespace ScriptCs.Dnx.Hosting
         private readonly bool _initDirectoryCatalog;
         private readonly IInitializationServices _initializationServices;
         private readonly string _scriptName;
+        private readonly IEnumerable<Assembly> _applicationAssemblies;
 
         public RuntimeServices(
             ILogProvider logProvider,
@@ -27,7 +30,7 @@ namespace ScriptCs.Dnx.Hosting
             Type replType,
             bool initDirectoryCatalog,
             IInitializationServices initializationServices,
-            string scriptName)
+            string scriptName, IEnumerable<Assembly> applicationAssemblies)
             : base(logProvider, overrides)
         {
             if (logProvider == null) throw new ArgumentNullException(nameof(logProvider));
@@ -40,6 +43,7 @@ namespace ScriptCs.Dnx.Hosting
             _initDirectoryCatalog = initDirectoryCatalog;
             _initializationServices = initializationServices;
             _scriptName = scriptName;
+            _applicationAssemblies = applicationAssemblies;
         }
 
         internal bool InitDirectoryCatalog
@@ -168,16 +172,16 @@ namespace ScriptCs.Dnx.Hosting
             return fileSystem.IsPathRooted(assembly) && assemblyUtility.IsManagedAssembly(assembly);
         }
 
-        private static void RegisterReplCommands(ContainerBuilder builder)
+        private void RegisterReplCommands(ContainerBuilder builder)
         {
             //todo: register repl commands
-            //var replCommands = AppDomain.CurrentDomain.GetAssemblies()
-            //    .Where(x => !x.IsDynamic)
-            //    .SelectMany(x => x.GetExportedTypes())
-            //    .Where(x => typeof(IReplCommand).IsAssignableFrom(x) && x.IsClass && !x.IsAbstract)
-            //    .ToArray();
+            var replCommands = _applicationAssemblies
+                .Where(x => !x.IsDynamic)
+                .SelectMany(x => x.GetExportedTypes())
+                .Where(x => typeof(IReplCommand).IsAssignableFrom(x) && x.GetTypeInfo().IsClass)
+                .ToArray();
 
-            //builder.RegisterTypes(replCommands).As<IReplCommand>();
+            builder.RegisterTypes(replCommands).As<IReplCommand>();
         }
 
         public ScriptServices GetScriptServices()
